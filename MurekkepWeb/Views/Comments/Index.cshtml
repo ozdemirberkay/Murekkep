@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MurekkepWeb.Models.Comment>
+
+@{
+    ViewBag.Title = "Yorumlar";
+}
+
+<h2>Yorumlar</h2>
+
+<p>
+    @Html.ActionLink("Yeni Yorum Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            İçerik
+        </th>
+       
+        <th>
+            Ürün Numarası
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.icerik)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.productId)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.id }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,22 @@
+﻿.index_question {
+    border-bottom: 1px solid lightgray;
+    margin: 1%;
+    padding-bottom: 10px;
+}
+
+.index_question_cube {
+    padding: 2px;
+    text-align: center;
+    color: gray;
+}
+
+.index_question_title {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+    border: 0px;
+}
+
+.index_question_asker {
+    float: right;
+}

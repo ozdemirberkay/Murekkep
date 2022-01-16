@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MurekkepWeb.Models.Category>
+
+@{
+    ViewBag.Title = "Kategoriler";
+}
+
+<h2>Kategoriler</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kategori Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            İsim
+        </th>
+        <th>
+            Açıklama
+        </th>
+        <th>
+            Fotoğraf
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageAdres)
+            </td>
+            <td>
+                @if (@Session["username"] != null && @Session["username"].ToString().Equals("berkay"))
+                {
+                        @Html.ActionLink("Düzenle", "Edit", new { id = item.ID }) <br />
+                    @Html.ActionLink("Sil", "Delete", new { id = item.ID })<br />    
+                }
+                @Html.ActionLink("Detaylar", "Details", new { id = item.ID }) 
+
+            </td>
+        </tr>
+    }
+
+</table>

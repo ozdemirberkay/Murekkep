@@ -1,0 +1,55 @@
+﻿@model MurekkepWeb.Models.User
+
+@{
+    ViewBag.Title = "Kullanıcı Sil";
+}
+
+<h2>Kullanıcı Sil</h2>
+
+<h3>Bu üyeyi silmek istediğinizden emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Kullanıcı Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            İsim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>*@
+
+        <dt>
+            Mail Adresi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mailadres)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Listeye Dön", "Index")
+        </div>
+    }
+</div>

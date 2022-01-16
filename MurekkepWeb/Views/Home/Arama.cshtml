@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Ara";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm("Arama", "Home", FormMethod.Post))
+{
+
+    <div class="wrap">
+        <div class="search">
+            <h2>Aradığınız Ürünü Hemen Bulun!</h2><br />
+            <input type="text" ID="kelime" name="kelime" class="searchTerm" placeholder="Ürün, Kategori veya Marka ara">
+            <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+}

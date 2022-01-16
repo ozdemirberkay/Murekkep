@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MurekkepWeb.Models.Product>
+@{
+    ViewBag.Title = "Urunler";
+}
+
+
+<!--/main-->
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Ürünler</h3>
+        <div class="inner-sec">
+            <!--left-->
+            <div class="left-blog-info-w3layouts-agileits text-left">
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 card">
+                            <a href="single.html">
+                                <img src="@Html.DisplayFor(modelItem => item.ImageAdres)} " class="card-img-top img-fluid" alt="">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="single.html">@Html.DisplayFor(modelItem => item.Name)</a>
+                                </h5>
+                                <p class="card-text mb-3">@Html.DisplayFor(modelItem => item.Name) Hakkında Yapılmış Bütün Yorumları İncele, Yorum Yap</p>
+                                @Html.ActionLink("Ürüne Yorum Yap", "UrunYorum", new { id = item.ID }, new { @class = "btn btn-primary read-m" })
+
+                            </div>
+                        </div>
+
+                    }
+                    <!--//left-->
+                </div>                                   
+            </div>
+        </div>
+</section>
+<!--//main-->

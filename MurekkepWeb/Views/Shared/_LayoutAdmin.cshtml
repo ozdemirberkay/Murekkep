@@ -1,0 +1,211 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Content/admin.css" rel="stylesheet" />
+
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/Content/single.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+    </style>
+</head>
+
+<!--Header-->
+
+<header>
+    <div class="top-bar_sub_w3layouts container-fluid">
+        <div class="row">
+            <div class="col-md-4 logo text-left">
+                <a class="navbar-brand" href="/Home">
+                    <i class="fab fa-linode"></i> Mürekkep
+                </a>
+            </div>
+
+            @if (Session["username"] != null && Session["username"].ToString() != "")
+            {
+                <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+                    <span>Hoşgeldiniz! @Session["username"].ToString()</span>
+                    <span class="mx-lg-4 mx-md-2  mx-1">
+                        <a href="/Users/CikisYap">
+                            <i class="fas fa-lock"></i> Çıkış Yap
+                        </a>
+                    </span>
+
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+                    <span>Hoşgeldiniz!</span>
+                    <span class="mx-lg-4 mx-md-2  mx-1">
+                        <a href="/Users/GirisYap">
+                            <i class="fas fa-lock"></i> Giriş Yap
+                        </a>
+                    </span>
+                    <span>
+                        <a href="/Users/Create">
+                            <i class="far fa-user"></i> Kayıt Ol
+                        </a>
+                    </span>
+                </div>
+            }
+
+
+            <div class="col-md-4 log-icons text-right">
+
+                <ul class="social_list1 mt-3">
+
+                    <li>
+                        <a href="#" class="facebook1 mx-2">
+                            <i class="fab fa-facebook-f"></i>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twitter2">
+                            <i class="fab fa-twitter"></i>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="dribble3 mx-2">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="pin">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="header_top" id="home">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/">
+                            Anasayfa
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Products/">Ürünler</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Categories/">Kategoriler</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Hakkimizda">Hakkımızda</a>
+                    </li>
+                    @if (@Session["username"] != null && @Session["username"].ToString().Equals("berkay"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Admin/">Admin Paneli</a>
+                        </li>
+
+                    }
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Arama">Ürün Ara</a>
+                    </li>
+
+                </ul>
+                @using (Html.BeginForm("Arama", "Home", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0 header-search" }))
+                {
+
+
+                    <input class="form-control mr-sm-2" type="search" placeholder="Mürekkep'te Ara" name="kelime" required="">
+                    <button class="btn btn1 my-2 my-sm-0" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+
+                }
+
+            </div>
+        </nav>
+
+    </div>
+</header>
+<!--//header-->
+
+<nav role='navigation' style="top:110px !important">
+    <ul class="main">
+        <li class="dashboard">
+            @Html.ActionLink(
+linkText: "Site Yönetimi",
+actionName: "Index",
+controllerName: "Admin"
+)
+        </li>
+        <li class="edit">
+            @Html.ActionLink(
+linkText: "Kategori Yönetimi",
+actionName: "Index",
+controllerName: "Categories"
+)
+        </li>
+        <li class="write">
+            @Html.ActionLink(
+linkText: "Ürün Yönetimi",
+actionName: "Index",
+controllerName: "Products"
+)
+        </li>
+
+
+
+        <li class="comment">
+            @Html.ActionLink(
+linkText: "Yorum Yönetimi",
+actionName: "Index",
+controllerName: "Comments"
+)
+        </li>
+
+
+        <li class="write">
+            @Html.ActionLink(
+linkText: "Kullanıcı Yönetimi",
+actionName: "Index",
+controllerName: "Users"
+)
+        </li>
+
+    </ul>
+</nav>
+
+<main role="main">
+
+    @RenderBody()
+
+</main>
+
+
+
+</html>

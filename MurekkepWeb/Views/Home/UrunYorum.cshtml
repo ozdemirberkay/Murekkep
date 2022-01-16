@@ -1,0 +1,134 @@
+﻿@model MurekkepWeb.Models.Product
+@{
+    ViewBag.Title = "UrunYorum";
+}
+
+
+
+<section class="banner-bottom">
+    <!--/blog-->
+    <div class="container">
+        <div class="row">
+            <!--left-->
+            <div class="col-lg-12 left-blog-info-w3layouts-agileits text-left">
+                <div class="blog-grid-top">
+                    <div class="b-grid-top">
+                        <div class="blog_info_left_grid">
+                            <a href="single.html">
+                                <img src="@Html.DisplayFor(model => model.ImageAdres)}" class="img-fluid" alt="" style="height:600px; width:auto; margin-left:auto; margin-right:auto">
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <h3>
+                        @Html.DisplayFor(model => model.Brand) @Html.DisplayFor(model => model.Name)
+
+                    </h3>
+
+                    <h5 style="color:darkred"> Ürünün Ortalama Değerlendirme Puanı: @Html.DisplayFor(model => model.ortalamaPuan)</h5> <br />
+
+                    <p>
+                        @Html.DisplayFor(model => model.Brand) @Html.DisplayFor(model => model.Name) özelliklerini inceleyip, hakkındaki yorumları okuyabilir ve görüşünüzü yazabilirsiniz.
+                    </p>
+
+                    <p style="color:black; white-space: pre-line;   ">
+                        @Html.DisplayFor(model => model.Brand) @Html.DisplayFor(model => model.Aciklama)
+                    </p>
+
+                </div>
+
+                <div class="comment-top">
+                    <h4>Yorumlar</h4>
+
+                    <div class="jumbotron">
+                        <h5 class="display-4">Yorumları Filtrele</h5>
+
+                        @using (Html.BeginForm("UrunYorum2", "Home", FormMethod.Post))
+                        {
+                            <input type="hidden" class="form-control" name="id" value="@Model.ID" placeholder="Arancak Metin">
+                            <i class="fa fa-star" aria-hidden="true"></i> <input class="form-control" type="number" id="yildiz" name="yildiz" style="width:100px !important"><br>
+                            <input type="text" style="color:black" class="form-control" name="aramatext" placeholder="Arancak Metin">
+                            <button type="submit" class="btn btn-primary submit">Ara</button>
+                        }
+
+                    </div>
+
+
+                    @if (Model.YorumList.Count == 0)
+                    {
+                        <h3 class="mt-0">Kriterlere Uygun Yorum Bulunamadı</h3>
+                    }
+
+                    @foreach (var item in Model.YorumList)
+                    {
+                        <div class="media">
+                            <img src="~/Content/images/indir.png" alt="" class="img-fluid" style="width:50px; height:auto;" />
+                            <div class="media-body">
+                                <h5 class="mt-0" style="font-weight:600; font-size:24px">@item.username </h5>
+                                <p style="color:black">
+                                    @item.icerik <br />
+                                    Verilen Puan: @item.yildiz<br />
+                                    <small> @item.begeniSayi kişi Beğendi</small>     <br />
+
+
+                                    @using (Html.BeginForm("UrunYorumBegen", "Home", FormMethod.Post))
+                                    {
+                                        <input type="hidden" class="form-control" name="urunid" value="@Model.ID">
+                                        <input type="hidden" class="form-control" name="yorumid" value="@item.id">
+
+                                        <button type="submit" class="btn btn-info btn-sm">Beğen</button>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+                <div class="comment-top">
+                    <h4>Sizce Bu Ürün Nasıl Bir Ürün? Sizde Yorum Yazın!</h4>
+                    <div class="comment-bottom">
+
+                        @if (Session["username"] != null && Session["username"].ToString() != "")
+                        {
+
+                            using (Html.BeginForm("UrunYorum", "Home", FormMethod.Post))
+                            {
+                                <i class="fa fa-star" aria-hidden="true"></i> <input class="form-control" type="number" id="stars" name="stars" style="width:100px !important"><br>
+                                <textarea class="form-control" name="Message" placeholder="Mesajınız..." required=""></textarea>
+                                <button type="submit" class="btn btn-primary submit">Gönder</button>
+                            }
+
+                        }
+                        else
+                        {
+
+                            <h3>Yorum Yapabilmek İçin Üye Girişi Yapınız.</h3><br />
+                            <span class="mx-lg-4 mx-md-2  mx-1">
+                                <a href="/Users/GirisYap">
+                                    <i class="fas fa-lock"></i> Giriş Yap
+                                </a>
+                            </span>
+                            <span>
+                                <a href="/Users/Create">
+                                    <i class="far fa-user"></i> Kayıt Ol
+                                </a>
+                            </span>
+                        }
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!--//left-->
+
+        </div>
+    </div>
+</section>
+

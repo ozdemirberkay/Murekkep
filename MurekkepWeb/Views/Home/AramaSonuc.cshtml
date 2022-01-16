@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "AramaSonuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Arama Sonuçları</h2>
+<br />
+<br />
+
+
+
+<div class="row">
+    @foreach (var item in ViewBag.Urunler)
+    {
+
+
+
+        <div class="col-lg-4 card">
+            <a href="single.html">
+                <img src="@item.ImageAdres " class="card-img-top img-fluid" alt="">
+            </a>
+            <div class="card-body">
+                <span class="card-title">
+                    <a href="single.html">@item.Name</a>  <br />
+                    @item.Name Özelliklerine Bak, Yorumları İncele, Yorum Yap
+                </span>
+
+                @Html.ActionLink("Ürüne Yorum Yap", "UrunYorum", new { id = item.ID }, new { @class = "btn btn-primary read-m" })
+
+            </div>
+        </div>
+
+
+
+
+
+    }
+
+    </div>
+

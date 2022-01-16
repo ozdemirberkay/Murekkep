@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/Content/single.css" rel="stylesheet" />
+    <link href="~/Content/yildiz.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/slider.css" rel="stylesheet" />
+    <link href="~/Content/aramasayfasi.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+    <!--Header-->
+
+    <header>
+        <div class="top-bar_sub_w3layouts container-fluid">
+            <div class="row">
+                <div class="col-md-4 logo text-left">
+                    <a class="navbar-brand" href="/Home">
+                        <i class="fab fa-linode"></i> Mürekkep
+                    </a>
+                </div>
+
+                @if (Session["username"] != null && Session["username"].ToString() != "")
+                {
+                    <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+                        <span>Hoşgeldiniz! @Session["username"].ToString()</span>
+                        <span class="mx-lg-4 mx-md-2  mx-1">
+                            <a href="/Users/CikisYap">
+                                <i class="fas fa-lock"></i> Çıkış Yap
+                            </a>
+                        </span>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+                        <span>Hoşgeldiniz!</span>
+                        <span class="mx-lg-4 mx-md-2  mx-1">
+                            <a href="/Users/GirisYap">
+                                <i class="fas fa-lock"></i> Giriş Yap
+                            </a>
+                        </span>
+                        <span>
+                            <a href="/Users/Create">
+                                <i class="far fa-user"></i> Kayıt Ol
+                            </a>
+                        </span>
+                    </div>
+                }
+
+
+                <div class="col-md-4 log-icons text-right">
+
+                    <ul class="social_list1 mt-3">
+
+                        <li>
+                            <a href="#" class="facebook1 mx-2">
+                                <i class="fab fa-facebook-f"></i>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="twitter2">
+                                <i class="fab fa-twitter"></i>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dribble3 mx-2">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="pin">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="header_top" id="home">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/">
+                                Anasayfa
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Products/">Ürünler</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Categories/">Kategoriler</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Hakkimizda">Hakkımızda</a>
+                        </li>
+                        @if (@Session["username"] != null && @Session["username"].ToString().Equals("berkay"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/">Admin Paneli</a>
+                            </li>
+
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Arama">Ürün Ara</a>
+                        </li>
+
+                    </ul>
+                    @using (Html.BeginForm("Arama", "Home", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0 header-search" }))
+                    {
+
+
+                        <input class="form-control mr-sm-2" type="search" placeholder="Mürekkep'te Ara" name="kelime" required="">
+                        <button class="btn btn1 my-2 my-sm-0" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+
+
+                    }
+
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <!--//header-->
+
+
+    <div class="container body-content">
+
+
+        <div style="margin-top:80px; margin-bottom:150px;">
+            @RenderBody()
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <!--footer-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 footer-grid-agileits-w3ls text-left">
+                    <h3>Hakkımızda</h3>
+                    <p>Ürün Değerlendirme Sitesi</p>
+
+
+                    <div class="read">
+                        <a href="/Home/Hakkimizda" class="btn btn-primary read-m">Daha Fazla Oku</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 footer-grid-agileits-w3ls text-left">
+
+                    <div class="tech-btm">
+                        <br />
+                        <h3>Mürekkep</h3>
+                        <p>Ürünlerin özelliklerini incele</p>
+                        <p>Ürün hakkında yapılan yorumları gör</p>
+                        <p>Yorumlar arasından seçim yap</p>
+
+
+
+
+
+                    </div>
+                </div>
+                <!-- subscribe -->
+                    
+            </div>
+            <!-- footer -->
+            <div class="footer-cpy text-center">
+                <div class="footer-social">
+                    <div class="copyrighttop">
+                        <ul>
+                            <li class="mx-3">
+                                <a class="facebook" href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <span>Facebook</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="facebook" href="#">
+                                    <i class="fab fa-twitter"></i>
+                                    <span>Twitter</span>
+                                </a>
+                            </li>
+                            <li class="mx-3">
+                                <a class="facebook" href="#">
+                                    <i class="fab fa-google-plus-g"></i>
+                                    <span>Google+</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="facebook" href="#">
+                                    <i class="fab fa-pinterest-p"></i>
+                                    <span>Pinterest</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="w3layouts-agile-copyrightbottom">
+                    <p>
+                       <b style="color:white; font-size:30px; font-weight:600">Berkay Özdemir</b>
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- //footer -->
+
+
+        </div>
+    </footer>
+    <!---->
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/slider.js"></script>
+
+</body>
+</html>

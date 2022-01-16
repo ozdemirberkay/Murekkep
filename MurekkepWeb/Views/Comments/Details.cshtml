@@ -1,0 +1,42 @@
+﻿@model MurekkepWeb.Models.Comment
+
+@{
+    ViewBag.Title = "Yorum Detayları";
+}
+
+<h2>Yorum Detayları</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        
+
+        <dt>
+            İçerik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.icerik)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CreateDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDateTime)
+        </dd>*@
+
+        <dt>
+            Ürün Numarası
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Listeye Dön", "Index")
+</p>

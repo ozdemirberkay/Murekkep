@@ -1,0 +1,41 @@
+﻿@model MurekkepWeb.Models.Category
+
+@{
+    ViewBag.Title = "Kategori Detayları";
+}
+
+<h2>Kategori Detayları</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            İsim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Açıklama
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Fotoğraf
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageAdres)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Listeye Geri Dön", "Index")
+</p>

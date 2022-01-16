@@ -1,0 +1,67 @@
+﻿@using System.Web.UI.WebControls
+@model MurekkepWeb.Models.ViewModel.QuestionCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@{Model.GetAllTags();}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Yeni Gönderi</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                @Html.TextBoxFor(model => model.question.title, new { htmlAttributes = new { @placeholder = "asdsad", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.question.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                @Html.TextAreaFor(model => model.question.body, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.question.body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+
+                @for (int i = 0; i < Model.TagOfQuestions.Count; i++)
+                {
+                <div class="row">
+                    <div class="col-md-12">
+
+                        @Html.HiddenFor(model => Model.TagOfQuestions[i].tag.id)
+                        @Html.CheckBoxFor(m => Model.TagOfQuestions[i].checkedTag)
+                        <label class="control-label ">@Model.TagOfQuestions[i].tag.tagName </label>
+
+
+                    </div>
+                </div>
+
+                }
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

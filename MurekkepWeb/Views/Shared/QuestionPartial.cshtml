@@ -1,0 +1,47 @@
+﻿@using MurekkepWeb.Models
+@model List<MurekkepWeb.Models.Question>
+
+
+
+
+
+
+
+<div class="row">
+    @foreach (Question question in Model)
+    {
+        <div class="col-sm-12 col-md-12 col-lg-12 index_question">
+            <div class="col-sm-12 col-md-1 col-lg-1">
+                <div class="col-sm-12 col-md-12 col-lg-12 index_question_cube">
+                    @question.vote<br />
+                    vote
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 index_question_cube">
+                    @question.answerCount<br />
+                    answer
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 index_question_cube">
+                    @question.viewCount<br />
+                    view
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-11 col-lg-11">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    @Html.ActionLink(question.title, "Q", "Questions", new { id = question.id }, new { @class = "btn btn-link index_question_title" })
+                    
+                    <br/><span>@question.body</span>
+                </div>
+                <div class="col-sm-12 col-md-8 col-lg-8">
+
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 index_question_asker">
+
+                    question.asker.username
+                </div>
+
+
+            </div>
+        </div>
+    }
+</div>

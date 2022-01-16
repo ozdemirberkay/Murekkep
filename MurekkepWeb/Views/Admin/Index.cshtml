@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (@Session["username"] != null && @Session["username"].ToString().Equals("berkay"))
+{
+
+<div class="jumbotron jumbotron-fluid" style="padding:50px; color:black">
+    <h3>Yönetim Sayfası</h3><hr/><br />
+
+    <p style="color:black ; font-weight:500; ">Toplam Kullanıcı Sayısı: @ViewBag.usercount </p>
+    <p style="color:black ; font-weight:500; ">Toplam Kategori Sayısı: @ViewBag.categoriescount</p>
+    <p style="color:black ; font-weight:500; ">Toplam Ürün Sayısı: @ViewBag.productscount</p>
+    <p style="color:black ; font-weight:500; ">Toplam Yorum Sayısı: @ViewBag.commentcount</p>
+</div>
+    
+}
+else
+{
+    <h3>Yetkiniz Yoktur</h3>
+}
+

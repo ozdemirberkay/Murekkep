@@ -1,0 +1,133 @@
+﻿@using MurekkepWeb.Models
+@using MurekkepWeb.Models.ViewModel
+@model MurekkepWeb.Models.ViewModel.QuestionDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2>@Html.DisplayFor(model => model.question.title)</h2>
+
+
+<div class="col-sm-12 col-md-12 col-lg-12 question_answerList">
+    <div class="col-sm-1 col-md-1 col-lg-1 answer_voteArea">
+
+        <div class="triangle triangle-4"></div>
+        <h6 class="answer_voteCount">@Html.DisplayFor(model => model.question.vote)</h6>
+        <div class="triangle triangle-5"></div>
+    </div>
+    
+    
+    
+    <div class="col-sm-11 col-md-11 col-lg-11">
+
+        <div class="col-sm-12 col-md-12 col-lg-12 question_answerList_answerArea">
+            @Html.DisplayFor(model => model.question.body)
+
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 question_answerList_Information">
+            @Html.DisplayFor(model => model.question.CreateDateTime)
+        </div>
+        <br/>
+        
+        @foreach (var questionTag in Model.question.tags)
+        {
+            <div>#@questionTag.tag.tagName </div>
+        }
+
+               
+
+        <div class="col-sm-6 col-md-3 col-lg-3 answer_UserCard">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <img class="answer_ProfilePic" src="~/Files/images/ornek-profile-pic.png" />
+            </div>
+            <div class="col-sm-9 col-md-9 col-lg-9">
+                Oğuzcan Özdemir<br />
+                <span style="color: green">&bull;</span> 63592
+            </div>
+        </div>
+    </div>
+
+   
+
+</div>
+
+
+<div>
+
+    @foreach (Answer answer in Model.question.answers)
+    {
+
+        <div class="col-sm-12 col-md-12 col-lg-12 question_answerList">
+            <div class="col-sm-1 col-md-1 col-lg-1 answer_voteArea">
+
+                <div class="triangle triangle-4"></div>
+                <h6 class="answer_voteCount">@answer.vote</h6>
+                <div class="triangle triangle-5"></div>
+            </div>
+
+            <div class="col-sm-11 col-md-11 col-lg-11">
+
+                <div class="col-sm-12 col-md-12 col-lg-12 question_answerList_answerArea">
+                    @answer.body
+
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3 question_answerList_Information">
+                    @answer.CreateDateTime
+                </div>
+
+               
+
+                <div class="col-sm-6 col-md-3 col-lg-3 answer_UserCard">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <img class="answer_ProfilePic" src="~/Files/images/ornek-profile-pic.png" />
+                    </div>
+                    <div class="col-sm-9 col-md-9 col-lg-9">
+                        Oğuzcan Özdemir<br />
+                        <span style="color: green">&bull;</span> 63592
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    }
+
+</div>
+
+
+<div class="answer_section">
+    <br />
+    <h4>Cevabınız:</h4>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    @Html.TextAreaFor(model => model.newAnswer.body, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.newAnswer.body, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <div class=" col-md-10">
+                    <input type="submit" value="Cevapla" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
