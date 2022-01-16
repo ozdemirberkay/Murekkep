@@ -146,9 +146,9 @@ namespace MurekkepWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> GirisYap([Bind(Include = "id,username,name,surname,mailadres")] User user)
+        public async Task<ActionResult> GirisYap([Bind(Include = "id,username,name,surname,mailadres,sifre")] User user)
         {
-            List<User> user1 = await db.Users.Where(s => (s.username == user.username)).ToListAsync();
+            List<User> user1 = await db.Users.Where(s => (s.username == user.username) && (s.sifre == user.sifre)).ToListAsync();
 
             if (user1.Count > 0)
             {
